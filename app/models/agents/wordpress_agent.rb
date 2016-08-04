@@ -81,6 +81,7 @@ module Agents
         categories = payload['categories'].to_s.split(',')
         tags = payload['tags'].to_s.split(',')
         blog_id = payload['blog_id'] #.to_i
+        custom_fields = payload['custom_fields']
         post_opts = {
           :blog_id => blog_id,
           :content => {
@@ -93,7 +94,8 @@ module Agents
             :terms_names  => {
               :category   => categories,
               :post_tag => tags
-            }
+            },
+            :custom_fields => custom_fields
           }
         }
         id = create_post(client_opts, post_opts)
